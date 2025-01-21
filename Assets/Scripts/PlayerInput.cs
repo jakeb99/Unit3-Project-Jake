@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public static PlayerInput Instance;
+
     //Directional Inputs
     private Vector2 lookDirection;
     [SerializeField] private Vector3 moveDirection;
 
     //Reference to the controller
     [SerializeField] private CharacterController controller;
-
 
     [SerializeField] private MoveAbility moveAbility;
     [SerializeField] private LookAbility lookAbility;
@@ -25,8 +26,25 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
+        // when we die disable player input
+        GetComponent<HealthSystem>().OnDead += () =>
+        {
+            this.enabled = false;
+        };
+
         //Control of Mouse Cursor
         Cursor.visible = false; //Visibility to hidden
         Cursor.lockState = CursorLockMode.Locked; //Locked to the center of the screen
