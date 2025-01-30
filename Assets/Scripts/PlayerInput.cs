@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private ShootingAbility shootAbility;
     [SerializeField] private JumpAbility jumpAbility;
     [SerializeField] private InteractAbility interactAbility;
+    [SerializeField] private CommanderAbility commanderAbility;
 
     [SerializeField] private float mouseSensitivity;
 
@@ -87,6 +88,10 @@ public class PlayerInput : MonoBehaviour
             interactAbility.Interact();
         }
 
+        if (commanderAbility && Input.GetMouseButtonDown(1))
+        {
+            commanderAbility.Command();
+        }
        
         
     }

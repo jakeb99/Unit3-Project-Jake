@@ -16,10 +16,14 @@ public class EnemyController : MonoBehaviour
 
     public Transform _player;
 
-    private void Start()
+    private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _currentState = new EnemyIdleState(this);
+    }
+
+    private void Start()
+    {
         _currentState.OnStateEnter();
     }
 

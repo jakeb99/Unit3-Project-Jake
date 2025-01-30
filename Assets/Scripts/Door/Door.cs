@@ -5,19 +5,32 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private PhysicalButton doorButton;
+    [SerializeField] private Indicator doorIndicator;
+    [SerializeField] private DoorKey doorKey;
     [SerializeField] private Vector3 openOffset;
     [SerializeField] private float doorSpeed;
 
     private Vector3 closedPosition;
 
     private bool isOpen = false;
+    [SerializeField] private bool canOpen;
 
     // Start is called before the first frame update
     void Start()
     {
         closedPosition = transform.position;
 
-        if (doorButton != null)
+        if (doorKey)
+        {
+            canOpen = false;
+            doorKey.OnDoorKeyPickUp += ToggleLock;
+        } else
+        {
+            canOpen= true;
+        }
+
+
+        if (doorButton)
             doorButton.OnPressed += OpenDoor;
     }
 
@@ -33,15 +46,35 @@ public class Door : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, closedPosition, Time.deltaTime * doorSpeed);
         }
+
+        if (canOpen)
+        {
+            doorIndicator.IndicatorOn();
+        } else if (!canOpen)
+        {
+            doorIndicator.IndicatorOff();
+        }
     }
 
     public void OpenDoor()
     {
-        isOpen = true;
+        if (canOpen)
+            isOpen = true;
     }
 
     public void CloseDoor() 
     { 
         isOpen = false;
+    }
+
+    public void ToggleLock()
+    {
+        if (!canOpen)
+        {
+            canOpen = true;
+        } else
+        {
+            canOpen = false;
+        }
     }
 }
