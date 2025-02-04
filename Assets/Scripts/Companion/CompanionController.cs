@@ -18,16 +18,6 @@ public class CompanionController : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(agent.pathStatus);
-        //if (commandQueue.Count > 0)
-        //{
-        //    commandQueue.Peek().Execute();
-        //    if (commandQueue.Peek().IsCommandComplete())
-        //    {
-        //        FinishCommand(); // when the command is done we remove it from queue
-        //    }
-        //}
-
         if (currentCommand != null && !currentCommand.IsCommandComplete()) return;
 
         if (commandQueue.Count == 0) return;

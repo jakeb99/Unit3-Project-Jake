@@ -49,10 +49,10 @@ public class Door : MonoBehaviour
 
         if (canOpen)
         {
-            doorIndicator.IndicatorOn();
+            doorIndicator?.IndicatorOn();
         } else if (!canOpen)
         {
-            doorIndicator.IndicatorOff();
+            doorIndicator?.IndicatorOff();
         }
     }
 

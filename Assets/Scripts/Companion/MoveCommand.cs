@@ -28,5 +28,6 @@ public class MoveCommand : Command
         if (Vector3.Distance(companionController.GetNavMeshAgent().destination, target) < 0.1f)
             return companionController.GetNavMeshAgent().remainingDistance < 0.01f;
         else return false;
+        //return Vector3.Distance(target, companionController.transform.position) < 0.5f;
     }
 }

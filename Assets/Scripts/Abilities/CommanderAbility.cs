@@ -20,7 +20,10 @@ public class CommanderAbility : MonoBehaviour
 
     public void Command()
     {
-        Instantiate(wayPointPrefab, transform.position, Quaternion.identity);
-        companionController.GiveCommand(new MoveCommand(transform.position));
+        if (companionController)
+        {
+            Instantiate(wayPointPrefab, transform.position, Quaternion.identity);
+            companionController.GiveCommand(new MoveCommand(transform.position));
+        }
     }
 }
