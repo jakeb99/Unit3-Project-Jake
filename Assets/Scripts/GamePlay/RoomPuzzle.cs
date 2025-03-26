@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class RoomPuzzle : Puzzle
 {
+    private bool isPuzzleActive = false;
+
     private void Update()
     {
-        if (CheckSolution() && !isPuzzleComplete)
+        if (this.isPuzzleActive)
         {
-            OnPuzzleCompleted?.Invoke();
-            isPuzzleComplete = true;
-            this.enabled = false;   // this will disable the script so then update is no longer being called
+            if (CheckSolution() && !isPuzzleComplete)
+            {
+                OnPuzzleCompleted?.Invoke();
+                isPuzzleComplete = true;
+                Debug.Log("Puzzle completed!");
+                this.enabled = false;   // this will disable the script so then update is no longer being called
+            }
         }
-
     }
 
     public override bool CheckSolution()
@@ -29,7 +34,7 @@ public class RoomPuzzle : Puzzle
     }
 
     // this could help with optimization
-    /*
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -46,5 +51,5 @@ public class RoomPuzzle : Puzzle
         }
         
     }
-    */
+    
 }

@@ -9,6 +9,8 @@ public class GrabbingAbility : MonoBehaviour
     [SerializeField] private float objectHeldDrag;
     [SerializeField] private float objectHeldAngularDrag;
     [SerializeField] private float objectHeldMovementMultiplier;
+    [SerializeField] private float throwMultiplier;
+    [SerializeField] private Transform playerCamTrans;
 
     private void Update()
     {
@@ -47,8 +49,6 @@ public class GrabbingAbility : MonoBehaviour
             //objectHeld.isKinematic = false;
             //objectHeld.transform.SetParent(null);
         }
-
-
     }
 
     public void MoveObject()
@@ -56,5 +56,19 @@ public class GrabbingAbility : MonoBehaviour
         // move the object we are holding to direction holding hand is pointing
         Vector3 direction = holdingHand.position - objectHeld.position; // dest - current pos = direction
         objectHeld.AddForce(direction * objectHeldMovementMultiplier);
+    }
+
+    public void ThrowObject()
+    {
+        if (objectHeld)
+        {
+            Rigidbody throwObj = objectHeld;
+            objectHeld.useGravity = true;
+            objectHeld.drag = 0;
+            objectHeld.angularDrag = 0;
+
+            objectHeld = null;
+            throwObj.AddForce(playerCamTrans.forward * throwMultiplier);
+        }
     }
 }

@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TurretIdleState : TurretState
 {
-    public TurretIdleState(TurretLazer turret) : base(turret)
+    public TurretIdleState(TurretController turret) : base(turret)
     {
 
     }
 
     public override void OnStateEnter()
     {
-        throw new System.NotImplementedException();
+        //Debug.Log("Entering turret idle state");
+        OnTurretStateEnter?.Invoke();
     }
 
     public override void OnStateExit()
     {
-        throw new System.NotImplementedException();
+        //Debug.Log("Exiting turret idle state");
+        OnTurretStateExit?.Invoke();
     }
 
     public override void OnStateUpdate()
     {
-        throw new System.NotImplementedException();
+        if (turretController.IsPlayerVisible())
+        {
+            turretController.ChangeState(new TurretAttackState(turretController));
+        }
     }
 }

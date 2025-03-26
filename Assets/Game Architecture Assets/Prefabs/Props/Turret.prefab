@@ -40,8 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5775810634095809089}
+  - component: {fileID: 700753612827663093}
   - component: {fileID: 3221414660810113496}
   - component: {fileID: 6743936657389125320}
+  - component: {fileID: 3061093035770662314}
+  - component: {fileID: 606142802865405408}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -66,6 +69,22 @@ Transform:
   - {fileID: 2873489891325428532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700753612827663093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587672820954958075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af48119c58c8a3a4f926c6d00b3a4355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretlazer: {fileID: 3221414660810113496}
+  checkDistance: 1
+  checkRadius: 6
+  checkOrgin: {fileID: 2873489891325428532}
 --- !u!114 &3221414660810113496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +203,41 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!135 &3061093035770662314
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587672820954958075}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.17
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &606142802865405408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587672820954958075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eda018a960de374aaedbbfb2171d520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  attackCooldown: 0.25
 --- !u!1 &7475912326584156362
 GameObject:
   m_ObjectHideFlags: 0

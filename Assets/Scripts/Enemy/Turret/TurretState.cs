@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class TurretState
 {
-    protected TurretLazer turret;
+    protected TurretController turretController;
 
-    public TurretState(TurretLazer turret)
+    public Action OnTurretStateEnter;
+    public Action OnTurretStateExit;
+
+    public TurretState(TurretController turret)
     {
-        this.turret = turret;
+        this.turretController = turret;
     }
 
     public abstract void OnStateEnter();

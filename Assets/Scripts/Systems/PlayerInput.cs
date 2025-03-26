@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private JumpAbility jumpAbility;
     [SerializeField] private InteractAbility interactAbility;
     [SerializeField] private CommanderAbility commanderAbility;
+    [SerializeField] private GrabbingAbility grabbingAbility;
 
     [SerializeField] private float mouseSensitivity;
 
@@ -91,6 +92,12 @@ public class PlayerInput : MonoBehaviour
         if (commanderAbility && Input.GetMouseButtonDown(1))
         {
             commanderAbility.Command();
+        }
+
+        if (grabbingAbility && Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("THROW!");
+            grabbingAbility.ThrowObject();
         }
        
         

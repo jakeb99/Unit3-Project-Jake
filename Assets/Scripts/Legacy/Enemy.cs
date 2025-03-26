@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform[] _targetpoints;
     [SerializeField] private Transform _enemyTransform;
     [SerializeField] private float _playerCheckDistance;
-    [SerializeField] private float _checkRadius = 0.4f;
+    //[SerializeField] private float _checkRadius = 0.4f;
 
     private int _currentTarget = 0;
 

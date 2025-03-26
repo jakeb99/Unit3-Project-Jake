@@ -16,7 +16,7 @@ public class EnemyIdleState : EnemyState
     public override void OnStateEnter()
     {
        _enemy._agent.destination = _enemy._targetPoints[_currentTarget].position;
-        Debug.Log("Enemy entering Idle state");
+        //Debug.Log("Enemy entering Idle state");
     }
 
     public override void OnStateUpdate()
@@ -32,7 +32,12 @@ public class EnemyIdleState : EnemyState
         }
 
         //check for player
-        if (Physics.SphereCast(_enemy._enemyEye.position, _enemy._checkRadius, _enemy.transform.forward, out RaycastHit hit, _enemy._playerCheckDistance))
+        if (Physics.SphereCast(
+            _enemy._enemyEye.position, 
+            _enemy._checkRadius, 
+            _enemy.transform.forward, 
+            out RaycastHit hit, 
+            _enemy._playerCheckDistance))
         {
             if (hit.transform.CompareTag("Player"))
             {
