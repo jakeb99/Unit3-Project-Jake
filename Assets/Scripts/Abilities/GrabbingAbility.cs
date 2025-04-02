@@ -68,6 +68,8 @@ public class GrabbingAbility : MonoBehaviour
             objectHeld.angularDrag = 0;
 
             objectHeld = null;
+            throwObj.angularVelocity = Vector3.zero;
+            throwObj.velocity = throwObj.velocity * 0.5f;
             throwObj.AddForce(playerCamTrans.forward * throwMultiplier);
         }
     }

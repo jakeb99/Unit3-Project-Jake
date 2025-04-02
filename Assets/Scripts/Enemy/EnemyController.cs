@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
 
     public Transform _player;
 
+    [SerializeField] private HealthSystem _healthSystem;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -25,6 +27,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         _currentState.OnStateEnter();
+        _healthSystem.OnDead += EnemyKilled;
     }
 
     private void Update()
@@ -45,6 +48,20 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(_enemyEye.position, _checkRadius);
         Gizmos.DrawWireSphere(_enemyEye.position + _enemyEye.forward * _playerCheckDistance, _checkRadius);
         Gizmos.DrawLine(_enemyEye.position, _enemyEye.position + _enemyEye.forward * _playerCheckDistance);
+    }
+
+    private void EnemyKilled()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("bullet hit!");
+            _healthSystem.DecreaseHealth(15f);
+        }
     }
 
 }

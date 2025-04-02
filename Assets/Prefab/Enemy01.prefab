@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 3314050089217413916}
   - component: {fileID: 4204047677613391522}
   - component: {fileID: 1920116416158424135}
+  - component: {fileID: 2098890676542088480}
   m_Layer: 0
   m_Name: Enemy01
   m_TagString: Untagged
@@ -274,3 +275,18 @@ MonoBehaviour:
   _checkRadius: 0.4
   _agent: {fileID: 3314050089217413916}
   _player: {fileID: 0}
+  _healthSystem: {fileID: 2098890676542088480}
+--- !u!114 &2098890676542088480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6304175215471601084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83eba17604e85034584c52abd9d735ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 50

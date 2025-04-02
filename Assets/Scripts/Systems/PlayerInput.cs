@@ -10,21 +10,14 @@ public class PlayerInput : MonoBehaviour
     private Vector2 lookDirection;
     [SerializeField] private Vector3 moveDirection;
 
-    //Reference to the controller
-    [SerializeField] private CharacterController controller;
-
     [SerializeField] private MoveAbility moveAbility;
     [SerializeField] private LookAbility lookAbility;
     [SerializeField] private ShootingAbility shootAbility;
-    [SerializeField] private JumpAbility jumpAbility;
     [SerializeField] private InteractAbility interactAbility;
     [SerializeField] private CommanderAbility commanderAbility;
     [SerializeField] private GrabbingAbility grabbingAbility;
 
     [SerializeField] private float mouseSensitivity;
-
-    //Movement Settings
-    [SerializeField] private float movementSpeed;
 
     [SerializeField] private LayerMask groundLayer;
 
@@ -53,14 +46,36 @@ public class PlayerInput : MonoBehaviour
     }
 
 
-    void Update()
+    private void FixedUpdate()
     {
         if (moveAbility)
         {
             Vector3 moveDir = new Vector3();
-            moveDir.x = moveDirection.x = Input.GetAxis("Horizontal");
-            moveDir.z = moveDirection.z = Input.GetAxis("Vertical");
+            moveDir.x = moveDirection.x = Input.GetAxisRaw("Horizontal");
+            moveDir.z = moveDirection.z = Input.GetAxisRaw("Vertical");
             moveAbility.Move(moveDir);
+        }
+    }
+
+    void Update()
+    {
+        if (moveAbility)
+        {
+            moveAbility.GroundDrag();
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                moveAbility.Jump();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) && (moveDirection.x != 0 || moveDirection.z != 0))
+            {
+                moveAbility.StartSlide();
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftControl)) {
+                moveAbility.StopSliding();
+            }
         }
 
         if (lookAbility)
@@ -79,10 +94,7 @@ public class PlayerInput : MonoBehaviour
             shootAbility.Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpAbility.Jump();
-        }
+
 
         if(interactAbility && Input.GetKeyDown(KeyCode.F))
         {
@@ -96,7 +108,6 @@ public class PlayerInput : MonoBehaviour
 
         if (grabbingAbility && Input.GetMouseButtonDown(1))
         {
-            Debug.Log("THROW!");
             grabbingAbility.ThrowObject();
         }
        

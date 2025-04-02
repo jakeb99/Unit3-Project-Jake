@@ -292,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 3903834868215979512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.001, y: 0, z: 0.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -323,9 +323,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!143 &2586716376277399183
 CharacterController:
@@ -375,7 +375,6 @@ MonoBehaviour:
   commanderAbility: {fileID: 110554075179835214}
   grabbingAbility: {fileID: 25874155344267614}
   mouseSensitivity: 400
-  movementSpeed: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 55
@@ -391,8 +390,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb82d7bbcc70f984cb1434cd95a713e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2586716376277399183}
-  movementSpeed: 15
+  rb: {fileID: 0}
+  sprintSpeed: 0
+  walkSpeed: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerHieght: 0
+  groundDrag: 0
+  jumpForce: 0
+  jumpCooldown: 0
+  airMultiplier: 0
+  maxSlopeAngle: 0
+  movementState: 0
 --- !u!114 &8658119130459369601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +496,8 @@ MonoBehaviour:
   objectHeldDrag: 5
   objectHeldAngularDrag: 10
   objectHeldMovementMultiplier: 12
-  throwMultiplier: 500
+  throwMultiplier: 700
+  playerCamTrans: {fileID: 0}
 --- !u!114 &9111767504378612561
 MonoBehaviour:
   m_ObjectHideFlags: 0
